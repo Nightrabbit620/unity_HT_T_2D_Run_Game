@@ -2463,6 +2463,7 @@ GameObject:
   - component: {fileID: 1191010946}
   - component: {fileID: 1191010950}
   - component: {fileID: 1191010949}
+  - component: {fileID: 1191010951}
   m_Layer: 0
   m_Name: knight
   m_TagString: Untagged
@@ -2590,6 +2591,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1191010951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191010945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5392d59d183633b4295395233fbf97f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jump: 350
+  hp: 500
+  isGround: 0
+  coin: 0
+  soundHit: {fileID: 8300000, guid: efbac9a8924f0594aaaba0103d9a184d, type: 3}
+  soundDead: {fileID: 0}
+  soundJump: {fileID: 8300000, guid: dd0c2e3d4dc990f44957dc76cf73c204, type: 3}
+  soundCoin: {fileID: 8300000, guid: 18a17592ec404034db685ef4576535f6, type: 3}
+  ani: {fileID: 1191010946}
+  rid: {fileID: 1191010950}
+  cap: {fileID: 1191010949}
 --- !u!1001 &1209887930
 PrefabInstance:
   m_ObjectHideFlags: 0
