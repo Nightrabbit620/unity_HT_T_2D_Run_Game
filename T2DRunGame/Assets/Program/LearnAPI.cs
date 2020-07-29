@@ -25,6 +25,11 @@ public class LearnAPI : MonoBehaviour
         // ***** 語法：
         // 欄位名稱.屬性 = 值
         tra.localScale = new Vector3(7, 7, 7);
+
+        // 練習：
+        // 1. 控制燈光顏色為紅色 Light
+        // 2. 設定燈光恢復預設值 Light
+        // 3. 調整攝影機的尺寸 3 Camera
     }
 
     public void Update()
