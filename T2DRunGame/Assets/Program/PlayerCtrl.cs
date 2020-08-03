@@ -40,7 +40,7 @@ public class PlayerCtrl : MonoBehaviour
     ///</summary>
     private void Hit()
     {
-
+        // 站立 位移 -0.21 0.03 尺寸 3.4 6
     }
 
     ///<summary>
@@ -48,7 +48,22 @@ public class PlayerCtrl : MonoBehaviour
     ///</summary>
     private void Jump()
     {
-
+        // 動畫控制器.設定布林值("參數名稱", 布林值)
+        /// <summary>
+        /// 按上鍵撥放跳躍動畫
+        /// </summary>
+        if (Input.GetKey("space"))
+            {
+                ani.SetBool("Jumpbool", true);
+            }
+        else
+            {
+                ani.SetBool("Jumpbool", false);
+            }
+        // 布林值 = 輸入.按下按鍵(按鍵列舉.空白鍵)
+        // bool space = Input.GetKeyDown(KeyCode.Space);
+        // 動畫控制器.設定布林值("參數名稱", 布林值)
+        // ani.SetBool("Jumpbool", space);
     }
 
     ///<summary>
@@ -84,7 +99,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Update()
     {
-        
+        Jump();
     }
 
     #endregion
