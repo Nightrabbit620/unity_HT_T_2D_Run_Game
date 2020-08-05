@@ -22,8 +22,9 @@ public class PlayerCtrl : MonoBehaviour
     public AudioClip soundDead;
 
     public Animator ani;
-    public Rigidbody2D rid;
+    public Rigidbody2D rig;
     public CapsuleCollider2D cap;
+    public AudioSource aud;
     #endregion
 
     #region 方法
@@ -32,7 +33,7 @@ public class PlayerCtrl : MonoBehaviour
     ///</summary>
     private void Move()
     {
-
+        transform.Translate(speed * Time.deltaTime, 0, 0);   // 變形.位移(x, y, z)
     }
 
     ///<summary>
@@ -52,19 +53,69 @@ public class PlayerCtrl : MonoBehaviour
         /// <summary>
         /// 按上鍵撥放跳躍動畫
         /// </summary>
-        if (Input.GetKey("space"))
-            {
-                ani.SetBool("Jumpbool", true);
-            }
+
+        // 布林值 = 輸入.按下按鈕(按鍵列舉.空白鍵)
+        bool space = Input.GetKeyDown(KeyCode.Space);
+
+        // 2D 射線碰撞物件 = 2D 物理.射線碰撞(起點，方向，長度 ，圖層)
+        // 圖層語法：1 << 圖層編號
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -1.52f), -transform.up, 0.05f, 1 << 8);
+
+        if (hit)
+        {
+            isGround = true;                 // 是否在地板上 = 是
+            ani.SetBool("Jumpbool", false);
+        }
         else
+        {
+            isGround = false;                // 是否在地板上 = 否
+        }
+
+        // 如果 在地板上
+        if (isGround)
+        {
+            // 如果 按下空白鍵
+            if (space)
             {
-                ani.SetBool("Jumpbool", false);
+                // 動畫控制器.設定布林值("參數名稱", 布林值)
+                ani.SetBool("Jumpbool", true);
+                // 剛體.添加推力(二維向量)
+                rig.AddForce(new Vector2(0, jump));
+                // 音效來源.播放一次(音效、音量)
+                aud.PlayOneShot(soundJump, 0.3f);
+                Debug.Log("jump");
             }
-        // 布林值 = 輸入.按下按鍵(按鍵列舉.空白鍵)
-        // bool space = Input.GetKeyDown(KeyCode.Space);
-        // 動畫控制器.設定布林值("參數名稱", 布林值)
-        // ani.SetBool("Jumpbool", space);
+        }
     }
+
+    // 繪製圖示事件：繪製補助線條，僅在 Scene 看得到
+    public void OnDrawGizmos()
+    {
+        // 圖示.顏色 = 顏色.紅色
+        Gizmos.color = Color.red;
+        // 圖示.繪製射線(起點，方向)
+        // transform 此物件的變形元件
+        // transform.position 此物件的座標
+        // transform.up 此物件的上方     Y
+        // transform.right 此物件右方    X
+        // transform.forward 此物件前方  Z
+        Gizmos.DrawRay(transform.position + new Vector3(-0.25f, -1.52f), -transform.up * 0.05f);
+    }
+
+    /* 如果 按下 ctrl
+     if (ctrl)
+     {    
+          滑行 位移 -0.1 -1.5 尺寸 1.35 1.35
+          cap.offset = new Vector2(-0.1f, -1.5f);
+          cap.size = new Vector2(1.35f, 1.35f);
+     }
+     否則
+     else
+     {
+          站立 位移 -0.1 -0.4 尺寸 1.35 3.6
+          cap.offset = new Vector2(-0.1f, -0.4f);
+          cap.size = new Vector2(1.35f, 3.6f);
+     }                                              */
 
     ///<summary>
     ///吃金幣
@@ -100,6 +151,7 @@ public class PlayerCtrl : MonoBehaviour
     private void Update()
     {
         Jump();
+        //Move();
     }
 
     #endregion
