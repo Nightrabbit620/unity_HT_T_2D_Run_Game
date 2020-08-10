@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 360163908}
   - component: {fileID: 360163910}
   - component: {fileID: 360163909}
+  - component: {fileID: 360163911}
   m_Layer: 8
   m_Name: floatfloor
   m_TagString: Untagged
@@ -637,7 +638,7 @@ CompositeCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
@@ -869,6 +870,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!251 &360163911
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360163904}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 70
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &384800709
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 384800712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5050455563365438016, guid: 49f2d9efa17d0574a9ebbcce2146ed96,
+          type: 3}
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &384800712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,6 +2777,9 @@ MonoBehaviour:
   cap: {fileID: 1191010949}
   aud: {fileID: 1191010952}
   imageHp: {fileID: 1978948465}
+  final: {fileID: 1831259498}
+  textTitle: {fileID: 1171729674}
+  textFinalCoin: {fileID: 2123444137}
 --- !u!82 &1191010952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3850,6 +3885,7 @@ GameObject:
   - component: {fileID: 1732489316}
   - component: {fileID: 1732489315}
   - component: {fileID: 1732489314}
+  - component: {fileID: 1732489317}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -8587,12 +8623,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732489313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.6, y: -4, z: 0}
+  m_LocalPosition: {x: 34.2, y: -2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1732489317
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732489313}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: 2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8, y: 4}
+  m_EdgeRadius: 0
 --- !u!1001 &1739646441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9140,12 +9202,12 @@ PrefabInstance:
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.048299
+      value: -15.16
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9129901
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}

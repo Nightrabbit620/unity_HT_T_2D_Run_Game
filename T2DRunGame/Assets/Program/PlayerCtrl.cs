@@ -50,10 +50,12 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Hit(GameObject obj)
     {
-        hp -= 30;                                  // 扣血 hp -= 10
+        hp -= 10000;                                  // 扣血 hp -= 10
         aud.PlayOneShot(soundHit);                 // 播放音效
         imageHp.fillAmount = hp / hpMax;           // 更新血條
         Destroy(obj);                              // 刪除障礙物
+
+        if (hp <= 0) Dead();                       // 如果 血量 <= 0 死亡
     }
 
     ///<summary>
@@ -140,20 +142,36 @@ public class PlayerCtrl : MonoBehaviour
         Destroy(obj, 0);                          // 刪除金幣
     }
 
+    [Header("結束畫面")]
+    public GameObject final;
+
+    private bool dead;
+
     ///<summary>
     ///死亡
     ///</summary>
     private void Dead()
     {
-
+        ani.SetTrigger("DeadTrigger");    // 死亡動畫
+        final.SetActive(true);            // 顯示結束畫面
+        speed = 0;                        // 速度 = 0 (停止移動)
+        dead = true;                      // 死亡 = 打勾
+        textTitle.text = "Filed...";
     }
+
+    [Header("過關標題與金幣")]
+    public Text textTitle;
+    public Text textFinalCoin;
 
     ///<summary>
     ///過關
     ///</summary>
     private void Pass()
     {
-
+        speed = 0;                // 速度 = 0
+        final.SetActive(true);    // 顯示結束畫面
+        textTitle.text = "Congratulations!";
+        textFinalCoin.text = "Coin：" + coin;
     }
     #endregion
 
@@ -165,6 +183,9 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Update()
     {
+        if (dead) return;      // 如果 死亡 跳出
+
+        if (transform.position.y <= -5) Dead();    // 掉下去死亡
         Jump();
         Move();
     }
@@ -179,8 +200,10 @@ public class PlayerCtrl : MonoBehaviour
     {
         // 如果 碰撞資訊.標籤 等於 金幣 吃掉金幣
         if (collision.tag == "Coin") EatCoin(collision.gameObject);
-
+        // 如果 碰到障礙物 受傷
         if (collision.tag == "Mace") Hit(collision.gameObject);
+        // 如果 碰到資訊.名稱 等於 傳送門 過關
+        if (collision.name == "Portal") Pass();
     }
 
     #endregion
