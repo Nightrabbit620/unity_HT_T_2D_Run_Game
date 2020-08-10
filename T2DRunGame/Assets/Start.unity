@@ -215,7 +215,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0efc0ad862ebb204d862066809ea737b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1818,7 +1818,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (2)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -1893,7 +1893,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (6)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -1975,6 +1975,7 @@ GameObject:
   - component: {fileID: 779996181}
   - component: {fileID: 779996180}
   - component: {fileID: 779996179}
+  - component: {fileID: 779996182}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2047,6 +2048,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779996182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779996178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc074a58868359749b54a565a770ed6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1191010948}
+  speed: 30
+  limitY: {x: 0, y: 0.6}
+  limitX: {x: 0, y: 100}
 --- !u!1 &783306477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2205,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (8)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -2263,7 +2280,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (1)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -2340,7 +2357,7 @@ GameObject:
   - component: {fileID: 1069934665}
   - component: {fileID: 1069934664}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CoinQuantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2416,7 +2433,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (4)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -2713,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5392d59d183633b4295395233fbf97f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   jump: 400
   hp: 500
   isGround: 0
@@ -2722,10 +2739,12 @@ MonoBehaviour:
   soundJump: {fileID: 8300000, guid: dd0c2e3d4dc990f44957dc76cf73c204, type: 3}
   soundCoin: {fileID: 8300000, guid: 18a17592ec404034db685ef4576535f6, type: 3}
   soundDead: {fileID: 0}
+  textCoin: {fileID: 1069934664}
   ani: {fileID: 1191010946}
   rig: {fileID: 1191010950}
   cap: {fileID: 1191010949}
   aud: {fileID: 1191010952}
+  imageHp: {fileID: 1978948465}
 --- !u!82 &1191010952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3456,7 +3475,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (3)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -3605,12 +3624,12 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (9)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7017002
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -3749,7 +3768,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (7)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -8584,7 +8603,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace (5)
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
@@ -8747,7 +8766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790695532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -2.77, z: -12.759766}
+  m_LocalPosition: {x: 0.88, y: -1.87, z: -12.759766}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 773154433}
@@ -8938,7 +8957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958294083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.758299, y: -2.85701, z: -12.759766}
+  m_LocalPosition: {x: 25.68, y: -2.98, z: -12.759766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7280106208924638420}
@@ -9116,7 +9135,7 @@ PrefabInstance:
     - target: {fileID: 2486506953010139850, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}
       propertyPath: m_Name
-      value: Mace
+      value: mace
       objectReference: {fileID: 0}
     - target: {fileID: 7589620558380973726, guid: fd2b0b9cd52f999478a80dff81d36108,
         type: 3}

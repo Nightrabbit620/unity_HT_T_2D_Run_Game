@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlayerCtrl : MonoBehaviour
     public AudioClip soundCoin;
     public AudioClip soundDead;
 
+    [Header("金幣數量")]
+    public Text textCoin;
+
     public Animator ani;
     public Rigidbody2D rig;
     public CapsuleCollider2D cap;
@@ -39,9 +43,17 @@ public class PlayerCtrl : MonoBehaviour
     ///<summary>
     ///受傷
     ///</summary>
-    private void Hit()
+    [Header("血條")]
+    public Image imageHp;
+
+    private float hpMax;
+
+    private void Hit(GameObject obj)
     {
-        // 站立 位移 -0.21 0.03 尺寸 3.4 6
+        hp -= 30;                                  // 扣血 hp -= 10
+        aud.PlayOneShot(soundHit);                 // 播放音效
+        imageHp.fillAmount = hp / hpMax;           // 更新血條
+        Destroy(obj);                              // 刪除障礙物
     }
 
     ///<summary>
@@ -83,7 +95,6 @@ public class PlayerCtrl : MonoBehaviour
                 rig.AddForce(new Vector2(0, jump));
                 // 音效來源.播放一次(音效、音量)
                 aud.PlayOneShot(soundJump, 0.3f);
-                Debug.Log("jump");
             }
         }
     }
@@ -120,9 +131,13 @@ public class PlayerCtrl : MonoBehaviour
     ///<summary>
     ///吃金幣
     ///</summary>
-    private void EatCoin()
+    /// <param name="obj">金幣的遊戲物件</param>
+    private void EatCoin(GameObject obj)
     {
-
+        coin++;                                   // 遞增 1
+        aud.PlayOneShot(soundCoin, 1.2f);         // 播放音效
+        textCoin.text = "金幣數量：" + coin;      // 文字介面.文字 = 字串 + 整數
+        Destroy(obj, 0);                          // 刪除金幣
     }
 
     ///<summary>
@@ -145,13 +160,27 @@ public class PlayerCtrl : MonoBehaviour
     #region 事件
     private void Start()
     {
-        
+        hpMax = hp;      // 最大血量 = 血量
     }
 
     private void Update()
     {
         Jump();
-        //Move();
+        Move();
+    }
+
+    // 碰撞 (觸發) 事件：
+    // 兩個物件必須有一個勾選 Is Trigger
+    // Enter 進入時執行一次
+    // Stay 碰撞實執行一秒約 60 次
+    // Exit 離開時執行一次
+    // 參數：紀錄碰撞到的碰撞資訊
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 如果 碰撞資訊.標籤 等於 金幣 吃掉金幣
+        if (collision.tag == "Coin") EatCoin(collision.gameObject);
+
+        if (collision.tag == "Mace") Hit(collision.gameObject);
     }
 
     #endregion

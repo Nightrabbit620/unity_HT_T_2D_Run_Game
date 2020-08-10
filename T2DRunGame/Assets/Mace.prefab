@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2172431401041671381}
   - component: {fileID: 2259238165750643768}
   m_Layer: 0
-  m_Name: Mace
-  m_TagString: Untagged
+  m_Name: mace
+  m_TagString: Mace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
